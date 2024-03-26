@@ -14,6 +14,11 @@ on:
         required: true
         type: string
         default: default
+      number:
+        description: 'color to write'
+        required: true
+        type: string
+        default: default
       
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -29,7 +34,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - run: echo "${{ inputs.color }}"
+      - run: echo "${{ inputs.color }} and ${{ inputs.number }}"
       
       # Runs a single command using the runners shell
       - name: Run a one-line script
