@@ -1,0 +1,41 @@
+name: variable-min-job
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+    inputs:
+      color:
+        description: 'color to write'
+        required: true
+        type: string
+        default: default
+      number:
+        description: 'color to write'
+        required: true
+        type: string
+        default: default
+      minutes:
+        description: 'number of minutes to sleep'
+        required: true
+        type: string
+        default: '1'
+      
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    timeout-minutes: 720
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      - run: echo "${{ inputs.color }} and ${{ inputs.number }}"
+      
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: sleep ${{ inputs.minutes }}m
